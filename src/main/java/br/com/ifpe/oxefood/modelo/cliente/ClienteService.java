@@ -26,4 +26,9 @@ public class ClienteService {
     public Cliente obterPorID(Long id) {
         return repository.findById(id).get();
     }
+
+    public void update(Long id, Cliente cliente) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
 }
