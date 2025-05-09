@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -24,4 +25,17 @@ public class ProdutoService {
     public Produto obterPorID(Long id){
         return repository.findById(id).get();
     }
+
+    @Transactional
+   public void update(Long id, Produto ProdutoAlterado) {
+
+      Produto Produto = repository.findById(id).get();
+      Produto.setNome(ProdutoAlterado.getNome());
+      Produto.setDataNascimento(ProdutoAlterado.getDataNascimento());
+      Produto.setCpf(ProdutoAlterado.getCpf());
+      Produto.setFoneCelular(ProdutoAlterado.getFoneCelular());
+      Produto.setFoneFixo(ProdutoAlterado.getFoneFixo());
+	    
+      repository.save(Produto);
+  }
 }
