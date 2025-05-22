@@ -2,6 +2,8 @@ package br.com.ifpe.oxefood.modelo.entregador;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,23 +16,23 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Entregador")
-//@SQLRestriction
+@SQLRestriction("habilitado = true")
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Entregador extends EntidadeAuditavel{
-    @Column
+    @Column(nullable= false)
     private String nome;
     
-    @Column
+    @Column(nullable= false)
     private String cpf;
 
-    @Column
+    @Column(nullable= false)
     private String rg;
 
-    @Column
+    @Column(nullable= false)
     private LocalDate dataNascimento;
 
     @Column
@@ -53,6 +55,9 @@ public class Entregador extends EntidadeAuditavel{
 
     @Column
     private String enderecoNumero;
+
+    @Column
+    private String enderecoBairro;
 
     @Column
     private String enderecoCidade;
