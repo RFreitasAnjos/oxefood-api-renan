@@ -1,6 +1,9 @@
 package br.com.ifpe.oxefood.api.categoria;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifpe.oxefood.modelo.categoria.CategoriaProduto;
 import br.com.ifpe.oxefood.modelo.categoria.CategoriaProdutoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/categoriaproduto")
@@ -24,12 +28,21 @@ public class CategoriaProdutoController {
 	
 	@PostMapping
 	public ResponseEntity<CategoriaProduto> save(@RequestBody CategoriaProdutoRequest request){
-		
+		CategoriaProduto categoriaProdutoNovo = request.build();
+		CategoriaProduto categoriaProduto = categoriaProdutoService.save(categoriaProdutoNovo);
+		return new ResponseEntity<CategoriaProduto>(categoriaProduto, HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/{ìd}")
-	public CategoriaProduto obterPorId(@PathVariable Long id) {
-		return categoriaProdutoService.obterPorId(id);
+	@GetMapping
+	public List<CategoriaProduto> listarTodos(){
+		
+		return categoriaProdutoService.listarTodos();
+	}
+	
+	
+	@GetMapping("/{id}")
+	public CategoriaProduto obterPorID(@PathVariable Long id) {
+		return categoriaProdutoService.obterPorID(id);
 	}
 	
 	@PutMapping("/{id}")
