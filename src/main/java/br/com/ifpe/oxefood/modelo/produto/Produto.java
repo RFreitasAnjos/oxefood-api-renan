@@ -39,7 +39,7 @@ public class Produto extends EntidadeAuditavel{
     private String descricao;
 
     @Column(length=1000)
-    private LocalDate valorUnitario;
+    private Double valorUnitario;
 
     @Column(nullable= false)
     private Integer tempoEntregaMinimo;

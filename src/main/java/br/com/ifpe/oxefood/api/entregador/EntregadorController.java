@@ -43,8 +43,8 @@ public class EntregadorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Entregador> update(@PathVariable("id") Long id, @RequestBody EntregadorRequest request){
-        EntregadorService.update(id, request.build());
-        ResponseEntity.ok().build();
+        entregadorService.update(id, request.build());
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")

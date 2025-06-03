@@ -34,7 +34,7 @@ public class ProdutoController {
     public ResponseEntity<Produto> save(@RequestBody ProdutoRequest request){
         Produto produtoNovo = request.build();
         produtoNovo.setCategoria(categoriaProdutoService.obterPorId(request.getIdCategoria()));
-        Produto produto = produtoService.save(produtoNovo);
+        return new ResponseEntity<Produto>(produtoService.save(produtoNovo),HttpStatus.CREATED);
     }
 
     @GetMapping

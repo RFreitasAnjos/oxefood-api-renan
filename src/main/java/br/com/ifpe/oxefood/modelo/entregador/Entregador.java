@@ -35,7 +35,7 @@ public class Entregador extends EntidadeAuditavel{
     @Column(nullable= false)
     private LocalDate dataNascimento;
 
-    @Column
+    @Column(nullable= false)
     private String foneCelular;
 
     @Column
@@ -47,25 +47,28 @@ public class Entregador extends EntidadeAuditavel{
     @Column
     private Double valorFrete;
 
-    @Column
+    @Column(nullable= false)
     private String enderecoRua;
 
-    @Column 
+    @Column
     private String enderecoCompleto;
 
-    @Column
+    @Column(nullable= false)
     private String enderecoNumero;
 
-    @Column
+    @Column(nullable= false)
     private String enderecoBairro;
 
-    @Column
+    @Column(nullable= false)
     private String enderecoCidade;
 
-    @Column
+    @Column(nullable= false)
     private String enderecoCep;
 
-    @Column
+    @Column(nullable= false)
+    private String enderecoComplemento;
+
+    @Column(nullable= false)
     private String enderecoUf;
 
     @Column

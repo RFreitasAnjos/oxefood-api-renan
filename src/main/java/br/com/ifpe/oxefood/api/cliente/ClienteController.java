@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
 import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 import br.com.ifpe.oxefood.modelo.cliente.EnderecoCliente;
-import br.com.ifpe.oxefood.modelo.cliente.EnderecoClienteRequest;
+import br.com.ifpe.oxefood.api.cliente.EnderecoClienteRequest;
 import jakarta.validation.Valid;
 
 

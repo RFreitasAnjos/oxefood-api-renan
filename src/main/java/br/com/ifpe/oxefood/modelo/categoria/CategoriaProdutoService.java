@@ -22,7 +22,7 @@ public class CategoriaProdutoService {
 		return repository.findAll();
 	}
 	@Transactional
-	public CategoriaProduto obterPorID(Long id) {
+	public CategoriaProduto obterPorId(Long id) {
 		return repository.findById(id).get();
 	}
 	

@@ -42,11 +42,12 @@ public class CategoriaProdutoController {
 	
 	@GetMapping("/{id}")
 	public CategoriaProduto obterPorID(@PathVariable Long id) {
-		return categoriaProdutoService.obterPorID(id);
+		return categoriaProdutoService.obterPorId(id);
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<CategoriaProduto> update(@PathVariable("id") Long id, @RequestBody CategoriaProdutoRequest request){
+		categoriaProdutoService.update(id, request.build());
 		return ResponseEntity.ok().build();
 	}
 	
