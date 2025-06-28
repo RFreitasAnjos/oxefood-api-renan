@@ -1,4 +1,4 @@
-package br.com.ifpe.oxefood.util;
+package br.com.ifpe.oxefood.util.expections;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
