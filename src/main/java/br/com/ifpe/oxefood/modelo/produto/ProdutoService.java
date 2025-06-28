@@ -19,6 +19,9 @@ public class ProdutoService {
         if(produto.getValorUnitario() < 10) {
             throw new ProdutoException(ProdutoException.MSG_VALOR_MINIMO_PRODUTO);
         }
+        if(produto.getValorUnitario() < 20 && produto.getValorUnitario() > 100){
+            throw new ProdutoException(ProdutoException.MSG_VALOR_MINIMO_PRODUTO);
+        }
 
         produto.setHabilitado(Boolean.TRUE);
         return repository.save(produto);
