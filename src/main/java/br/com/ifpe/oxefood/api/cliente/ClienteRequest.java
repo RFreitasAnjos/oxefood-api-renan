@@ -1,13 +1,17 @@
 package br.com.ifpe.oxefood.api.cliente;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.ifpe.oxefood.modelo.acesso.Perfil;
+import br.com.ifpe.oxefood.modelo.acesso.Usuario;
 import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -21,8 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteRequest {
-    
-    @NotNull(message = "O Nome é de preencimento obrigatório")
+
     @NotEmpty(message = "O Nome é de preenchimento obrigatório")
     @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
     private String nome;
@@ -39,11 +42,27 @@ public class ClienteRequest {
 
     private String foneFixo;
 
-    public Cliente build(){
-        
+    @NotBlank(message = "O e-mail é de preenchimento obrigatório")
+    @Email
+    private String email;
+
+    @NotBlank(message = "A senha é de preenchimento obrigatório")
+    private String password;
+
+    public Usuario buildUsuario(){
+        return Usuario.builder()
+            .username(email)
+            .password(password)
+            .roles(Arrays.asList(new Perfil(Perfil.ROLE_CLIENTE)))
+            .build();
+    }
+
+    public Cliente build() {
+
         /*
             Meios diferentes de fazer o mesmo
         Cliente c = Cliente.builder()
+            .usuario(buildUsuario())
             .nome(nome)
             .dataNascimento(dataNascimento)
             .cpf(cpf)
@@ -51,15 +70,15 @@ public class ClienteRequest {
             .foneFixo(foneFixo)
             .build();
             return c;
-        */
-
+         */
         return Cliente.builder()
-            .nome(nome)
-            .dataNascimento(dataNascimento)
-            .cpf(cpf)
-            .foneCelular(foneCelular)
-            .foneFixo(foneFixo)
-            .build();
+                .usuario(buildUsuario())
+                .nome(nome)
+                .dataNascimento(dataNascimento)
+                .cpf(cpf)
+                .foneCelular(foneCelular)
+                .foneFixo(foneFixo)
+                .build();
     }
 
 }
